@@ -6,17 +6,14 @@ console.log(playerName, playerAttack, playerHealth,);
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"]
 console.log(enemyNames.length);
-for(var i = 0; i < enemyNames.length; i++) {
 
-}
 
 var enemyHealth = 50;
 var enemyAttack = 12;
 
 var fight = function(enemyName) {
-    //alert players they're starting the round
-    window.alert("Welcome to Robot Gladiators!");
-
+    while(enemyHealth > 0) {
+        //place fight funct cod eblock here
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
     if (promptFight === "fight" || promptFight === "FIGHT") {
@@ -55,7 +52,12 @@ var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? En
         window.alert("You need to choose a valid option. Try again!");
     }
 };
+    }
+    //alert players they're starting the round
+
 
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i])
+    var pickedEnemyName = enemyNames[i]
+    enemyHealth = 50
+    fight(pickedEnemyName)
 }
