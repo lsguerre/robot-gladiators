@@ -8,6 +8,8 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"]
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+console.log(playerName, playerHealth, playerAttack, playerMoney)
+console.log(enemyNames, enemyHealth, enemyAttack)
 
 
 var fight = function(enemyName) {
@@ -24,17 +26,16 @@ var fight = function(enemyName) {
         if (confirmSkip) {
           window.alert(playerName + ' has decided to skip this fight. Goodbye!');
           // subtract money from playerMoney for skipping
-          playerMoney = playerMoney - 10;
+          playerMoney = Math.max(0, playerMoney - 10)
           console.log("playerMoney", playerMoney)
           break;
         }
       }
   
       // remove enemy's health by subtracting the amount set in the playerAttack variable
-      enemyHealth = enemyHealth - playerAttack;
-      console.log(
-        playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
-      );
+      var damage = randomNumber(playerAttack - 3, playerAttack)
+      enemyHealth = Math.max(0, enemyHealth - damage)
+      console.log(playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.');
   
       // check enemy's health
       if (enemyHealth <= 0) {
@@ -50,10 +51,9 @@ var fight = function(enemyName) {
       }
   
       // remove players's health by subtracting the amount set in the enemyAttack variable
-      playerHealth = playerHealth - enemyAttack;
-      console.log(
-        enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
-      );
+      var damage = randomNumber(enemyAttack - 3, enemyAttack)
+      playerHealth = Math.max(0, playerHealth - damage)
+      console.log(enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.');
   
       // check player's health
       if (playerHealth <= 0) {
@@ -93,7 +93,7 @@ var shop = function () {
   switch (shopOptionPrompt) {
     case "REFILL": //new case
     case "refill":
-      if(playerMoney => 7 ) {
+      if( playerMoney => 7 ) {
       window.alert("Refilling player's health by 20 for 7 dollars.")
       //increase health and decrease money
       playerHealth = playerHealth + 20
@@ -141,7 +141,7 @@ for(var i = 0; i < enemyNames.length; i++) {
     if (playerHealth > 0) {
         window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) )   
         var pickedEnemyName = enemyNames[i]
-        enemyHealth = 50
+        enemyHealth = randomNumber(40, 60)
         fight(pickedEnemyName) 
       }
         if (playerHealth > 0 && i < enemyNames.length - 1 ){
@@ -165,6 +165,11 @@ for(var i = 0; i < enemyNames.length; i++) {
     endGame()
 }
 
+var randomNumber = function() {
+  var value = Math.floor(Math.random(40, 60) * (60 - 40 + 1) + 40)
+
+  return value 
+}
 
 
 startGame()
