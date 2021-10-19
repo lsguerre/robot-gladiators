@@ -1,4 +1,9 @@
 
+var randomNumber = function() {
+  var value = Math.floor(Math.random() * (max - min + 1) + min)
+
+  return value 
+}
 
 var fight = function(enemy) {
  
@@ -41,7 +46,9 @@ var fight = function(enemy) {
   
       // remove players's health by subtracting the amount set in the enemy.attack variable
       var damage = randomNumber(enemy.attack - 3, enemy.attack)
+
       playerInfo.health = Math.max(0, playerInfo.health - damage)
+      
       console.log(enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.');
   
       // check player's health
@@ -130,11 +137,6 @@ var shop = function () {
   }
 }
 
-var randomNumber = function() {
-  var value = Math.floor(Math.random(40, 60) * (60 - 40 + 1) + 40)
-
-  return value 
-}
 
 var playerInfo = {
   name: window.prompt("What is your robot's name?"),
